@@ -1,8 +1,13 @@
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.robotframework.javalib.annotation.ArgumentNames;
 import org.robotframework.javalib.annotation.RobotKeyword;
 import org.robotframework.javalib.annotation.RobotKeywords;
 import org.testng.annotations.AfterClass;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * PilotForRozetka
@@ -20,8 +25,15 @@ public class TC_1 {
     }
 
     @RobotKeyword
-    public void SignIn() throws InterruptedException {
+    @ArgumentNames({"login","password"})
+    public void SignIn(String login, String password) throws InterruptedException {
+        ChromeDriverManager.getInstance().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.get(Locators.signInUrl);
+
         Authorization Auth = PageFactory.initElements(driver, Authorization.class);
-        Auth.SingIn("kizkoyuliya@ukr.net", "2c35aba5");
+        Auth.SingIn(login, password);
     }
 }
