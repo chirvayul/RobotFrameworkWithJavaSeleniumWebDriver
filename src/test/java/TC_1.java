@@ -43,4 +43,13 @@ public class TC_1 {
         Auth.SingIn(networkName, login, password);
         driver.quit();
     }
+
+    @RobotKeyword
+    @ArgumentNames({"productUrl"})
+    public void GetProductDetails(String productUrl) throws InterruptedException {
+        startWebDriver();
+        Products products = PageFactory.initElements(driver, Products.class);
+        products.GetProductDetails(productUrl);
+        driver.quit();
+    }
 }
