@@ -24,16 +24,29 @@ public class TC_1 {
         driver.close();
     }
 
-    @RobotKeyword
-    @ArgumentNames({"login","password"})
-    public void SignIn(String login, String password) throws InterruptedException {
+    private void startWebDriver() throws InterruptedException {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(Locators.signInUrl);
+    }
 
+    @RobotKeyword
+    @ArgumentNames({"login","password"})
+    public void SignIn(String login, String password) throws InterruptedException {
+        startWebDriver();
         Authorization Auth = PageFactory.initElements(driver, Authorization.class);
         Auth.SingIn(login, password);
+        driver.quit();
+    }
+
+    @RobotKeyword
+    @ArgumentNames({"networkName","login","password"})
+    public void SignIn(String networkName, String login, String password) throws InterruptedException {
+        startWebDriver();
+        Authorization Auth = PageFactory.initElements(driver, Authorization.class);
+        Auth.SingIn(networkName, login, password);
+        driver.quit();
     }
 }
