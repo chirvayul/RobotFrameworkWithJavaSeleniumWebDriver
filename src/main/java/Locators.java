@@ -4,5 +4,5 @@
  */
 public class Locators {
     public static String baseUrl = "http://rozetka.com.ua";
-    public static String signInUrl = "http://rozetka.com.ua";
+
 }

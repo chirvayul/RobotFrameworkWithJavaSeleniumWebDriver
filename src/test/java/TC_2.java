@@ -10,11 +10,12 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * PilotForRozetka
- * Created by Yuliya Chyrva on 11.11.2016.
+ * Created by Yuliya Chyrva on 12.11.2016.
  */
 
+
 @RobotKeywords
-public class TC_1 {
+public class TC_2 {
 
     private WebDriver driver;
 
@@ -27,20 +28,11 @@ public class TC_1 {
     }
 
     @RobotKeyword
-    @ArgumentNames({"login","password"})
-    public void SignIn(String login, String password) throws InterruptedException {
+    @ArgumentNames({"productUrl"})
+    public void GetProductDetails(String productUrl) throws InterruptedException {
         startWebDriver();
-        Authorization Auth = PageFactory.initElements(driver, Authorization.class);
-        Auth.SingIn(login, password);
-        driver.quit();
-    }
-
-    @RobotKeyword
-    @ArgumentNames({"networkName","login","password"})
-    public void SignIn(String networkName, String login, String password) throws InterruptedException {
-        startWebDriver();
-        Authorization Auth = PageFactory.initElements(driver, Authorization.class);
-        Auth.SingIn(networkName, login, password);
+        Products products = PageFactory.initElements(driver, Products.class);
+        products.GetProductDetails(productUrl);
         driver.quit();
     }
 }

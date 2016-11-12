@@ -5,7 +5,7 @@ Library     Selenium2Library
 
 
 *** Testcases ***
-Check out rozetka dot com
+Войти в личный кабинет
 
 	Sign In  kizkoyuliya@ukr.net    2c35aba5
 	Close All Browsers
