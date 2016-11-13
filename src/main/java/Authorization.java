@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.Iterator;
 import java.util.Set;
 
@@ -10,6 +9,7 @@ import java.util.Set;
  * PilotForRozetka
  * Created by Yuliya Chyrva on 10.11.2016.
  */
+
 public class Authorization {
 
     @FindBy (xpath = "//a[contains(@name,'signin')]")
@@ -30,19 +30,23 @@ public class Authorization {
         this.driver = driver;
     }
 
-    public void SingIn(String login, String password) throws InterruptedException {
-        Signin.click();
-        SubmitLoginForm(login, password);
-    }
-
     public void SingIn(String networkName, String login, String password) throws InterruptedException {
         Signin.click();
-        driver.findElement(By.xpath("//div[contains(@type, '"+networkName+"')]")).click();
-        Set<String> windows = driver.getWindowHandles();
-        Iterator<String> itr = windows.iterator();
-        itr.next();
-        String childName = itr.next();
-        driver.switchTo().window(childName);
+        switch (networkName) {
+            case "email":
+                break;
+            case "vkontakte":
+            case "facebook":
+                driver.findElement(By.xpath("//div[contains(@type, '"+networkName+"')]")).click();
+                Set<String> windows = driver.getWindowHandles();
+                Iterator<String> itr = windows.iterator();
+                itr.next();
+                String childName = itr.next();
+                driver.switchTo().window(childName);
+                break;
+            default:
+                throw new IllegalArgumentException ("Enumeration is invalid");
+        }
         SubmitLoginForm(login, password);
     }
 

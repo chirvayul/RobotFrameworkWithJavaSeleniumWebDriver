@@ -51,6 +51,11 @@
             <artifactId>webdrivermanager</artifactId>
             <version>1.4.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.robotframework</groupId>
+            <artifactId>javalib-core</artifactId>
+            <version>1.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -67,6 +72,15 @@
                     </execution>
                 </executions>
 
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

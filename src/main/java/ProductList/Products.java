@@ -1,3 +1,5 @@
+package ProductList;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,10 +22,9 @@ public class Products {
         this.driver = driver;
     }
 
-    public void GetProductDetails(String ProductUrl){
+    public String getProductDetails(String ProductUrl){
         driver.get(ProductUrl);
-        System.out.println("Название товара: " + ItemName.getText());
-        System.out.println("Цена товара: " + ItemPrice.getText());
+        System.out.println(ItemName.getText() + "    " + ItemPrice.getText());
+        return ItemName.getText();
     }
-
 }
